@@ -17,14 +17,12 @@ import org.nutz.mvc.Setup;
  */
 public class MainSetup implements Setup {
 
-    @Override
     public void init(NutConfig nutConfig) {
         Ioc ioc = nutConfig.getIoc();
         Dao dao = ioc.get(Dao.class);
         Daos.createTablesInPackage(dao, "com.michael.gym", false);
     }
 
-    @Override
     public void destroy(NutConfig nutConfig) {
 
     }
