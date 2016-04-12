@@ -18,7 +18,7 @@ import org.nutz.dao.entity.annotation.Table;
 public class User {
     @Id
     private int id;
-
+//这仅仅是一个测试
     @Name
     private String name;
 
