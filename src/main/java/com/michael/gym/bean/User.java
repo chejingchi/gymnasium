@@ -2,7 +2,6 @@ package com.michael.gym.bean;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
 
 /**
@@ -18,9 +17,6 @@ import org.nutz.dao.entity.annotation.Table;
 public class User {
     @Id
     private int id;
-
-    @Name
-    private String name;
 
     @Column
     private String username;
@@ -50,14 +46,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUsername() {

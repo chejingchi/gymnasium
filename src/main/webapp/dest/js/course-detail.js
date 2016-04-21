@@ -10,7 +10,7 @@ $(function () {
             dataSpace += '<td><p>课程名称</p></td>';
             dataSpace += '<td><p>开始时间</p></td>';
             dataSpace += '<td><p>结束时间</p></td>';
-            dataSpace += '<td><p>认可教师</p></td>';
+            dataSpace += '<td><p>任课教师</p></td>';
             dataSpace += '</tr></thead>';
             for (var i = 0; i < pageSize; i++) {
                 var dataId = pageSize * (tp - 1) + i;
@@ -19,6 +19,7 @@ $(function () {
                 } else {
                     dataSpace += '<tr class="show-detail-info" data-toggle="modal" data-target="#book-detail-info">';
                     dataSpace += '<input type="hidden" value="' + finalData[dataId].id + '" />';
+                    dataSpace += '<td><p>' + finalData[dataId].id + '</p></td>';
                     dataSpace += '<td><p>' + finalData[dataId].title + '</p></td>';
                     dataSpace += '<td><p>' + finalData[dataId].start + '</p></td>';
                     dataSpace += '<td><p>' + finalData[dataId].end + '</p></td>';
@@ -47,6 +48,7 @@ $(function () {
     });
 
     $("#show-course-manager").on("click", function () {
+        $("#calendar").hide();
         var courseInfoPage = new PAGER();
         pageObjArr.push(courseInfoPage);
         courseInfoPage.initPager(1, courses.length, 10, 7, 'course-manager-pager', 'course-info-pager-div',

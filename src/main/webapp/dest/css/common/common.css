@@ -8,7 +8,9 @@
   background-color: #fff;
   border: 1px solid #ddd;
   margin-left: -1px; }
-
+#paging{
+  float: right;
+}
 #paging input {
   width: 40px; }
 

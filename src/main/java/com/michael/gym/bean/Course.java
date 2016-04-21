@@ -2,11 +2,9 @@ package com.michael.gym.bean;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author chejingchi
@@ -21,10 +19,7 @@ import java.util.List;
 public class Course {
     @Id
     private int id;
-
-    @Name
-    private String name;
-
+    
     @Column
     private String title;
 
@@ -37,7 +32,7 @@ public class Course {
     @Column
     private String teachersCode;
 
-    private List<String> teachersName;
+    private String teachersName;
 
 
     public int getId() {
@@ -46,14 +41,6 @@ public class Course {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTitle() {
@@ -88,11 +75,11 @@ public class Course {
         this.teachersCode = teachersCode;
     }
 
-    public List<String> getTeachersName() {
+    public String getTeachersName() {
         return teachersName;
     }
 
-    public void setTeachersName(List<String> teachersName) {
+    public void setTeachersName(String teachersName) {
         this.teachersName = teachersName;
     }
 }

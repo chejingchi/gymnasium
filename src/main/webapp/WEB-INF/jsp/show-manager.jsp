@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="${base}/dest/metisMenu.css">
     <link rel="stylesheet" href="${base}/dest/frame.css">
     <link rel="stylesheet" href="${base}/dest/add-xiu.css">
+    <link rel="stylesheet" href="${base}/dest/css/common/common.css">
     <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.css">
     <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.print.css" media='print'>
     <script type="text/javascript">
