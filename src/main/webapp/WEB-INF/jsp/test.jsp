@@ -250,7 +250,155 @@
         </aside>
         <section class="frame-content-right">
             <div id="add-xiu">
-                <div id="calendar">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div id="navigator">
+                            <div class="title">我的场馆秀</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        <div class="add-panel">
+                            <i class="iconfont icon-tianjia"></i>
+                            <p>创建场景</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        <!-- <div class="xiu-panel" style="background-image: url(../img/picture.png);"> -->
+                        <div class="xiu-panel" style="">
+                            <div class="xiu-panel-top">
+                                <p>2015.08.30</p>
+                                <p>场馆秀</p>
+                            </div>
+                            <div class="xiu-panel-bottom">
+                        <span class="xiu-edit">
+                            <i class="iconfont icon-bianji"></i>
+                        </span>
+                        <span class="xiu-fabu">
+                            <i class="iconfont icon-fabu"></i>
+                        </span>
+                        <span class="xiu-delete">
+                            <i class="iconfont icon-shanchu1"></i>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        <!-- <div class="xiu-panel" style="background-image: url(../img/picture.png);"> -->
+                        <div class="xiu-panel" style="">
+                            <div class="xiu-panel-top">
+                                <p>2015.08.30</p>
+                                <p>场馆秀</p>
+                            </div>
+                            <div class="xiu-panel-bottom">
+                        <span class="xiu-edit">
+                            <i class="iconfont icon-bianji"></i>
+                        </span>
+                        <span class="xiu-fabu">
+                            <i class="iconfont icon-fabu"></i>
+                        </span>
+                        <span class="xiu-delete">
+                            <i class="iconfont icon-shanchu1"></i>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        <!-- <div class="xiu-panel" style="background-image: url(../img/picture.png);"> -->
+                        <div class="xiu-panel" style="">
+                            <div class="xiu-panel-top">
+                                <p>2015.08.30</p>
+                                <p>场馆秀</p>
+                            </div>
+                            <div class="xiu-panel-bottom">
+                        <span class="xiu-edit">
+                            <i class="iconfont icon-bianji"></i>
+                        </span>
+                        <span class="xiu-fabu">
+                            <i class="iconfont icon-fabu"></i>
+                        </span>
+                        <span class="xiu-delete">
+                            <i class="iconfont icon-shanchu1"></i>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="display: none">
+                    <div class=" xiu-profile-modal">
+                        <div class="modal-title">
+                            编辑基本信息
+                    <span class="shut pull-right">
+                        <i class="iconfont icon-shanchu"></i>
+                    </span>
+                        </div>
+                        <div class="modal-contant">
+                            <!-- <div class="cover-replace" style="background-image: url(../img/picture.png);"> -->
+                            <div class="cover-replace" style="">
+                                <div class="cover-bottom">更换封面</div>
+                            </div>
+
+                            <div class="contant-right">
+                                <div class="setting-group">
+                                    <label class="name">场景名称：</label>
+
+                                    <div class="setting-value">
+                                        <input name="name" type="text" placeholder="场景名称"/>
+                                    </div>
+                                </div>
+
+                                <div class="setting-group">
+                                    <label class="profile">场景描述：</label>
+
+                                    <div class="setting-value">
+                            <textarea name="profile" id="description1" rows="2"
+                                      placeholder="你可以写下30个汉字或60个英文字符的场景描述哦！"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom-button">
+                            <a class="btn" href="">去发布</a>
+                        </div>
+                    </div>
+                    <div class="modal-title">
+                        编辑基本信息
+                    <span class="shut pull-right">
+                        <i class="iconfont icon-shanchu"></i>
+                    </span>
+                    </div>
+                    <div class="modal-contant">
+                        <!-- <div class="cover-replace" style="background-image: url(../img/picture.png);"> -->
+                        <div class="cover-replace" style="">
+
+                            <div class="cover-bottom">更换封面</div>
+                        </div>
+
+                        <div class="contant-right">
+                            <div class="setting-group">
+                                <label class="name">场景名称：</label>
+                                <div class="setting-value">
+                                    <input name="name" type="text" placeholder="场景名称"/>
+                                </div>
+                            </div>
+
+                            <div class="setting-group">
+                                <label class="profile">场景描述：</label>
+                                <div class="setting-value">
+                                    <textarea name="profile" id="description2" rows="2"
+                                              placeholder="你可以写下30个汉字或60个英文字符的场景描述哦！"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-button">
+                        <a class="btn" href="">去发布</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -264,8 +412,6 @@
 <script src="${base}/dest/metisMenu.js"></script>
 <script src="${base}/dest/calendar/lib/moment.min.js"></script>
 <script src="${base}/dest/calendar/fullcalendar.min.js"></script>
-<script src="${base}/dest/calendar/fullcalendar.min.js"></script>
-<script src="${base}/dest/js/show-manager.js"></script>
 
 <script>
     $(function () {
