@@ -9,9 +9,15 @@
 <html>
 <head>
     <title>calendar</title>
+    <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.css">
+    <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.print.css" media='print'>
 </head>
 <body>
 <div id="calendar">
 </div>
 </body>
+<script src="${base}/dest/calendar/lib/moment.min.js"></script>
+<script src="${base}/dest/calendar/fullcalendar.min.js"></script>
+<script src="${base}/dest/calendar/fullcalendar.min.js"></script>
+<script src="${base}/dest/js/course-detail.js"></script>
 </html>

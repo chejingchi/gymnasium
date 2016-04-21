@@ -22,8 +22,6 @@
     <link rel="stylesheet" href="${base}/dest/metisMenu.css">
     <link rel="stylesheet" href="${base}/dest/frame.css">
     <link rel="stylesheet" href="${base}/dest/add-xiu.css">
-    <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.css">
-    <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.print.css" media='print'>
 </head>
 <body>
 <div class="frame-header">
@@ -250,7 +248,7 @@
         </aside>
         <section class="frame-content-right">
             <div id="add-xiu">
-                <jsp:include  page="course-detail.jsp"/>
+                <jsp:include page="course-detail.jsp"/>
             </div>
         </section>
     </section>
@@ -259,12 +257,9 @@
 <div class="frame-footer">Copyright ©2015 猜猜我是谁</div>
 </body>
 <script src="${base}/dest/jquery-2.1.1.js"></script>
+<script src="${base}/dest/js/common/common.js"></script>
 <script src="${base}/dest/bootstrap.js"></script>
 <script src="${base}/dest/metisMenu.js"></script>
-<script src="${base}/dest/calendar/lib/moment.min.js"></script>
-<script src="${base}/dest/calendar/fullcalendar.min.js"></script>
-<script src="${base}/dest/calendar/fullcalendar.min.js"></script>
-<script src="${base}/dest/js/show-manager.js"></script>
 
 <script>
     $(function () {
