@@ -256,7 +256,7 @@
     </section>
 </div>
 <!--<div class="thick"></div>-->
-<div class="frame-footer">Copyright ©2015 easy-hi.com All Rights Reserved. 南京瑞奕惟扬信息科技有限公司 版权所有</div>
+<div class="frame-footer">Copyright ©2015 猜猜我是谁</div>
 </body>
 <script src="${base}/dest/jquery-2.1.1.js"></script>
 <script src="${base}/dest/bootstrap.js"></script>
