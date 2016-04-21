@@ -250,7 +250,7 @@
         </aside>
         <section class="frame-content-right">
             <div id="add-xiu">
-
+                <jsp:include  page="course-detail.jsp"/>
             </div>
         </section>
     </section>
