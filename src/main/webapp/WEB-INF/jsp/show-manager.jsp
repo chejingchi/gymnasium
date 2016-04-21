@@ -250,8 +250,7 @@
         </aside>
         <section class="frame-content-right">
             <div id="add-xiu">
-                <div id="calendar">
-                </div>
+
             </div>
         </section>
     </section>
