@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="${base}/dest/metisMenu.css">
     <link rel="stylesheet" href="${base}/dest/frame.css">
     <link rel="stylesheet" href="${base}/dest/add-xiu.css">
+    <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.css">
+    <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.print.css" media='print'>
+    <script type="text/javascript">
+        var courses = ${obj.courses};
+    </script>
 </head>
 <body>
 <div class="frame-header">
@@ -53,13 +58,13 @@
                         <ul>
                             <li>
                                 <div></div>
-                                <a href="#">课程管理</a>
+                                <a href="#">课程排期</a>
 
                                 <div class="bottom"></div>
                             </li>
                             <li>
                                 <div></div>
-                                <a href="#">课程排期</a>
+                                <a href="#">课程管理</a>
 
                                 <div class="bottom"></div>
                             </li>
@@ -193,9 +198,9 @@
                         <a href="#" class="first-level"><i class="iconfont icon-book-font">&#xe605;</i>课程&教练<span
                                 class="glyphicon arrow"></span></a>
                         <ul>
-                            <li><a href="#" class="active-now">课程管理</a></li>
-                            <li><a href="#">课程排期</a></li>
-                            <li><a href="#">课表管理</a></li>
+                            <li><a href="#" class="active-now">课程排期</a></li>
+                            <%--<li><a href="#">课表管理</a></li>--%>
+                            <li><a id="show-course-manager">课程管理</a></li>
                             <li><a href="#">教练管理</a></li>
                         </ul>
                     </li>
@@ -248,7 +253,8 @@
         </aside>
         <section class="frame-content-right">
             <div id="add-xiu">
-                <jsp:include page="course-detail.jsp"/>
+                <div id="calendar"></div>
+                <div id="course-manager-pager"></div>
             </div>
         </section>
     </section>
@@ -260,7 +266,11 @@
 <script src="${base}/dest/js/common/common.js"></script>
 <script src="${base}/dest/bootstrap.js"></script>
 <script src="${base}/dest/metisMenu.js"></script>
-
+<script src="${base}/dest/js/common/page.js"></script>
+<script src="${base}/dest/calendar/lib/moment.min.js"></script>
+<script src="${base}/dest/calendar/fullcalendar.min.js"></script>
+<script src="${base}/dest/calendar/fullcalendar.min.js"></script>
+<script src="${base}/dest/js/course-detail.js"></script>
 <script>
     $(function () {
         $('#mobile-menu').metisMenu();
@@ -268,6 +278,7 @@
             toggle: false
         });
     });
+
 </script>
 
 <!--<script type="text/javascript">

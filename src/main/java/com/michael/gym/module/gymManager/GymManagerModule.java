@@ -1,10 +1,15 @@
 package com.michael.gym.module.gymManager;
 
+import com.michael.gym.bean.Course;
+import org.nutz.json.Json;
+import org.nutz.lang.util.NutMap;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Fail;
 import org.nutz.mvc.annotation.Ok;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * @author chejingchi
@@ -26,6 +31,13 @@ public class GymManagerModule extends BaseModule {
     @At("/init")
     @Ok("jsp:jsp.show-manager")
     public Object init() {
-        return null;
+        List<Course> courses = dao.query(Course.class, null);
+        return new NutMap().setv("courses", Json.toJson(courses));
+    }
+
+    @At
+    public Object showCourseInfo(){
+        List<Course> courses = dao.query(Course.class, null);
+        return new NutMap();
     }
 }

@@ -5,6 +5,9 @@ import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Name;
 import org.nutz.dao.entity.annotation.Table;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @author chejingchi
  *         创建时间:16/4/21 下午3:37
@@ -23,19 +26,19 @@ public class Course {
     private String name;
 
     @Column
-    private String courseCode;
+    private String title;
 
     @Column
-    private String startTime;
+    private Date start;
 
     @Column
-    private String endTime;
+    private Date end;
 
     @Column
-    private String teacherCode;
+    private String teachersCode;
 
-    @Column
-    private String teacherName;
+    private List<String> teachersName;
+
 
     public int getId() {
         return id;
@@ -53,43 +56,43 @@ public class Course {
         this.name = name;
     }
 
-    public String getCourseCode() {
-        return courseCode;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public Date getStart() {
+        return start;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setStart(Date start) {
+        this.start = start;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public Date getEnd() {
+        return end;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setEnd(Date end) {
+        this.end = end;
     }
 
-    public String getTeacherCode() {
-        return teacherCode;
+    public String getTeachersCode() {
+        return teachersCode;
     }
 
-    public void setTeacherCode(String teacherCode) {
-        this.teacherCode = teacherCode;
+    public void setTeachersCode(String teachersCode) {
+        this.teachersCode = teachersCode;
     }
 
-    public String getTeacherName() {
-        return teacherName;
+    public List<String> getTeachersName() {
+        return teachersName;
     }
 
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
+    public void setTeachersName(List<String> teachersName) {
+        this.teachersName = teachersName;
     }
 }
