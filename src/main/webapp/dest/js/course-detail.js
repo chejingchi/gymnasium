@@ -48,11 +48,31 @@ $(function () {
     });
 
     $("#show-course-manager").on("click", function () {
+        $("#pc-menu a").removeClass("active-now");
+        $(this).addClass("active-now");
         $("#calendar").hide();
-        var courseInfoPage = new PAGER();
-        pageObjArr.push(courseInfoPage);
-        courseInfoPage.initPager(1, courses.length, 10, 7, 'course-manager-pager', 'course-info-pager-div',
-            courses, CourseManager.findCourseInfoData, 0);
+        $("#course-manager").show();
+        $.ajax({
+            url: manageCourseInitUrl,
+            Type: "post",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                var courseInfoPage = new PAGER();
+                pageObjArr.push(courseInfoPage);
+                courseInfoPage.initPager(1, data.courses.length, 10, 7, 'course-manager-pager', 'course-info-pager-div',
+                    data.courses, CourseManager.findCourseInfoData, 0);
+            }
+        })
+    })
+
+    $("body").delegate(".pick-time", "focusin", function () {
+        $(this).datetimepicker({
+            format: "dd MM yyyy - hh:ii",
+            autoclose: true,
+            todayBtn: true,
+            pickerPosition: "bottom-left"
+        });
     })
 
 })

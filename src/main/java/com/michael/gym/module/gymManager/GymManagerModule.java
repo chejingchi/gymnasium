@@ -32,9 +32,13 @@ public class GymManagerModule extends BaseModule {
     @Ok("jsp:jsp.show-manager")
     public Object init() {
         List<Course> courses = dao.query(Course.class, null);
-        for (Course c : courses) {
-            setTeachersName(c);
-        }
         return new NutMap().setv("courses", Json.toJson(courses));
+    }
+
+    @At
+    public Object manageCourseInit() {
+        List<Course> courses = dao.query(Course.class, null);
+        setTeachersName(courses);
+        return new NutMap().setv("courses", courses);
     }
 }

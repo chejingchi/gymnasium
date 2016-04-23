@@ -25,6 +25,12 @@ public class BaseModule {
     @Inject
     protected Dao dao;
 
+    protected void setTeachersName(List<Course> courses) {
+        for (Course c : courses) {
+            setTeachersName(c);
+        }
+    }
+
     protected void setTeachersName(Course c) {
         String teachersCode = c.getTeachersCode();
         String teachersName = "";

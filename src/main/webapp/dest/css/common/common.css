@@ -1,21 +1,39 @@
 .paging-style {
-  position: relative;
-  float: left;
-  padding: 6px 12px;
-  line-height: 1.42857;
-  text-decoration: none;
-  color: #337ab7;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  margin-left: -1px; }
-#paging{
-  float: right;
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857;
+    text-decoration: none;
+    color: #337ab7;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-left: -1px;
 }
+
+#paging {
+    float: right;
+}
+
 #paging input {
-  width: 40px; }
+    width: 40px;
+}
 
 table .first-col {
-  width: 12%; }
+    width: 12%;
+}
 
 table .second-col {
-  width: 28%; }
+    width: 28%;
+}
+
+.disnone {
+    display: none;
+}
+
+.add-course {
+    margin-top: 20px;
+}
+
+.my-modal-width {
+    width: 1000px;
+}

@@ -25,8 +25,11 @@
     <link rel="stylesheet" href="${base}/dest/css/common/common.css">
     <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.css">
     <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.print.css" media='print'>
+    <link rel="stylesheet" type="text/css" href="${base}/dest/bootstrap-datapicker/css/bootstrap-datetimepicker.css"/>
+
     <script type="text/javascript">
         var courses = ${obj.courses};
+        var manageCourseInitUrl = "${base}/gymManager/manageCourseInit";
     </script>
 </head>
 <body>
@@ -255,12 +258,99 @@
         <section class="frame-content-right">
             <div id="add-xiu">
                 <div id="calendar"></div>
-                <div id="course-manager-pager"></div>
+                <div id="course-manager" class="disnone">
+                    <div id="course-manager-pager"></div>
+                    <div>
+                        <button type="button" class="btn btn-default add-course" data-toggle="modal"
+                                data-target="#add-course">添加课程
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </section>
     </section>
 </div>
-<!--<div class="thick"></div>-->
+
+<!--模态框-->
+<div class="modal fade" id="add-course" tabindex="-1" role="dialog"
+     aria-labelledby="addCourseLabel" aria-hidden="true">
+    <div class="modal-dialog my-modal-width">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="addCourseLabel">
+                    添加课程
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="add-course-modal">
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group col-sm-6">
+                                <label class="margin-left-minus-fifty col-sm-4 control-label">课程名称</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="录入课程名称">
+                                </div>
+                            </div>
+                            <div class="margin-left-minus-fifty form-group col-sm-6">
+                                <label class="col-sm-4 control-label">录入操作人员</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" placeholder="默认为管理员">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group col-sm-6">
+                                <label class="margin-left-minus-fifty col-sm-4 control-label">任课老师选择</label>
+                                <div class="col-sm-8">
+                                    <select name="" id="" class="form-control">
+                                        <option value="1">吴楠</option>
+                                        <option value="2">吴楠</option>
+                                        <option value="3">吴楠</option>
+                                        <option value="4">吴楠</option>
+                                        <option value="5">吴楠</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="margin-left-minus-fifty form-group col-sm-6">
+                                <label class="col-sm-4 control-label">开始时间</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control pick-time" placeholder="" readonly>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group col-sm-6">
+                                <label class="margin-left-minus-fifty col-sm-4 control-label">录入时间</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control pick-time" placeholder="" readonly>
+                                </div>
+                            </div>
+                            <div class="margin-left-minus-fifty form-group col-sm-6">
+                                <label class="col-sm-4 control-label">结束时间</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control pick-time" placeholder="" readonly>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div align="center">
+                        <button type="button" class="btn btn-default">确认添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="frame-footer">Copyright ©2015 猜猜我是谁</div>
 </body>
 <script src="${base}/dest/jquery-2.1.1.js"></script>
@@ -271,6 +361,7 @@
 <script src="${base}/dest/calendar/lib/moment.min.js"></script>
 <script src="${base}/dest/calendar/fullcalendar.min.js"></script>
 <script src="${base}/dest/calendar/fullcalendar.min.js"></script>
+<script src="${base}/dest/bootstrap-datapicker/js/bootstrap-datetimepicker.js"></script>
 <script src="${base}/dest/js/course-detail.js"></script>
 <script>
     $(function () {
@@ -281,20 +372,5 @@
     });
 
 </script>
-
-<!--<script type="text/javascript">
-    $(function(){
-        var navH = $(".title").offset().top;
-        $(window).scroll(function(){
-            var scroH = $(this).scrollTop();
-            if(scroH>=navH){
-                $(".title").css({"position":"fixed","top":0,"left":"0%","width":"100%"});//
-            }else if(scroH<navH){
-                $(".title").css({"position":"static","margin":"0 auto"});
-            }
-            console.log(scroH==navH);
-        })
-    })
-</script>-->
 </html>
 
