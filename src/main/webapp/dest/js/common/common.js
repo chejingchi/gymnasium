@@ -16,3 +16,27 @@ Date.prototype.Format = function (fmt) { //author: meizz
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
+(function ($) {
+    $.checkEmpty = function (data) {
+        if (data === undefined || $.trim(data).length == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    $.failAlertAjax = function (param) {
+        $.ajax({
+            url: param.url,
+            type: param.type,
+            data: param.data,
+            dataType: param.dataType,
+            success: param.success,
+            fail: function () {
+                alert("you need to sign in");
+            }
+        })
+    }
+})
+($)
