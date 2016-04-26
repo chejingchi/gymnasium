@@ -2,6 +2,37 @@
  * Created by chejingchi on 16/4/21.
  */
 $(function () {
+    var Course = function () {
+    }
+    Course.prototype.initParam = function () {
+        this.title = $("#courseName").val();
+        this.operator = $("#operator").val();
+        this.teacherCode = $("#teacherCode").val();
+        this.start = $("#startTime").val();
+        this.end = $("#endTime").val();
+        return this;
+    }
+    Course.prototype.checkIsNotEmpty = function () {
+        if ($.checkEmpty(this.title)) {
+            sweetAlert("Oops...", "课程名不能为空", "error");
+            return false;
+        }
+        if ($.checkEmpty(this.teacherCode)) {
+            sweetAlert("Oops...", "请选择任课老师", "error");
+            return false;
+        }
+        if ($.checkEmpty(this.start)) {
+            sweetAlert("Oops...", "请选择开始时间", "error");
+            return false;
+        }
+        if ($.checkEmpty(this.end)) {
+            sweetAlert("Oops...", "请选择结束时间", "error");
+            return false;
+        }
+        return true;
+    }
+
+
     var CourseManager = {
         findCourseInfoData: function (tp, pageSize, finalData) {
             var dataSpace = '<div class="data-render"><table class="table table-hover" id="Pui">';
@@ -75,4 +106,19 @@ $(function () {
         });
     })
 
+
+    $("#sure-to-add-course").on("click", function () {
+        var addCourse = new Course().initParam();
+        if(addCourse.checkIsNotEmpty()){
+            $.ajax({
+                url : addCourseUrl,
+                type : "post",
+                data : addCourse,
+                dataType : "json",
+                success : function(){
+                    window.location.reload();
+                }
+            })
+        }
+    })
 })

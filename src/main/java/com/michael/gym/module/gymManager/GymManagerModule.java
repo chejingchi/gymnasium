@@ -6,6 +6,7 @@ import org.nutz.lang.util.NutMap;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Fail;
 import org.nutz.mvc.annotation.Ok;
+import org.nutz.mvc.annotation.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,5 +41,13 @@ public class GymManagerModule extends BaseModule {
         List<Course> courses = dao.query(Course.class, null);
         setTeachersName(courses);
         return new NutMap().setv("courses", courses);
+    }
+
+    @At
+    public Object addCourse(@Param("..") Course course) {
+        if (course != null) {
+            dao.insert(course);
+        }
+        return null;
     }
 }

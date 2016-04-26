@@ -34,6 +34,16 @@ public class Course {
 
     private String teachersName;
 
+    @Column
+    private Date createTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public int getId() {
         return id;

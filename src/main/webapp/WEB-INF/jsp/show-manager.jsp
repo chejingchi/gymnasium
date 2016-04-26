@@ -26,10 +26,13 @@
     <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.css">
     <link rel="stylesheet" href="${base}/dest/calendar/fullcalendar.print.css" media='print'>
     <link rel="stylesheet" type="text/css" href="${base}/dest/bootstrap-datapicker/css/bootstrap-datetimepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="${base}/dest/sweetAlert/css/sweet-alert.css">
+
 
     <script type="text/javascript">
         var courses = ${obj.courses};
         var manageCourseInitUrl = "${base}/gymManager/manageCourseInit";
+        var addCourseUrl = "${base}/gymManager/addCourse";
     </script>
 </head>
 <body>
@@ -293,13 +296,13 @@
                             <div class="form-group col-sm-6">
                                 <label class="margin-left-minus-fifty col-sm-4 control-label">课程名称</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="录入课程名称">
+                                    <input type="text" id="courseName" class="form-control" placeholder="录入课程名称">
                                 </div>
                             </div>
                             <div class="margin-left-minus-fifty form-group col-sm-6">
                                 <label class="col-sm-4 control-label">录入操作人员</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" placeholder="默认为管理员">
+                                    <input type="text" id="operator" class="form-control" placeholder="默认为管理员">
                                 </div>
                             </div>
                         </form>
@@ -309,7 +312,7 @@
                             <div class="form-group col-sm-6">
                                 <label class="margin-left-minus-fifty col-sm-4 control-label">任课老师选择</label>
                                 <div class="col-sm-8">
-                                    <select name="" id="" class="form-control">
+                                    <select name="" id="teacherCode" class="form-control">
                                         <option value="1">吴楠</option>
                                         <option value="2">吴楠</option>
                                         <option value="3">吴楠</option>
@@ -321,7 +324,7 @@
                             <div class="margin-left-minus-fifty form-group col-sm-6">
                                 <label class="col-sm-4 control-label">开始时间</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control pick-time" placeholder="" readonly>
+                                    <input type="text" id="startTime" class="form-control pick-time" placeholder="" readonly>
                                 </div>
                             </div>
                         </form>
@@ -331,19 +334,19 @@
                             <div class="form-group col-sm-6">
                                 <label class="margin-left-minus-fifty col-sm-4 control-label">录入时间</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control pick-time" placeholder="" readonly>
+                                    <input type="text" class="form-control pick-time" placeholder="默认为当前时间可以不选" readonly>
                                 </div>
                             </div>
                             <div class="margin-left-minus-fifty form-group col-sm-6">
                                 <label class="col-sm-4 control-label">结束时间</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control pick-time" placeholder="" readonly>
+                                    <input type="text" id="endTime" class="form-control pick-time" placeholder="" readonly>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div align="center">
-                        <button type="button" class="btn btn-default">确认添加</button>
+                        <button type="button" id="sure-to-add-course" class="btn btn-default">确认添加</button>
                     </div>
                 </div>
             </div>
@@ -362,6 +365,7 @@
 <script src="${base}/dest/calendar/fullcalendar.min.js"></script>
 <script src="${base}/dest/calendar/fullcalendar.min.js"></script>
 <script src="${base}/dest/bootstrap-datapicker/js/bootstrap-datetimepicker.js"></script>
+<script src="${base}/dest/sweetAlert/js/sweet-alert.js"></script>
 <script src="${base}/dest/js/course-detail.js"></script>
 <script>
     $(function () {
