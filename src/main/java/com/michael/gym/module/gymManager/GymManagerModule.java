@@ -1,6 +1,7 @@
 package com.michael.gym.module.gymManager;
 
 import com.michael.gym.bean.Course;
+import com.michael.gym.bean.Teacher;
 import org.nutz.json.Json;
 import org.nutz.lang.util.NutMap;
 import org.nutz.mvc.annotation.At;
@@ -33,7 +34,8 @@ public class GymManagerModule extends BaseModule {
     @Ok("jsp:jsp.show-manager")
     public Object init() {
         List<Course> courses = dao.query(Course.class, null);
-        return new NutMap().setv("courses", Json.toJson(courses));
+        List<Teacher> teachers = dao.query(Teacher.class, null);
+        return new NutMap().setv("courses", Json.toJson(courses)).setv("teachers",teachers);
     }
 
     @At
@@ -41,6 +43,13 @@ public class GymManagerModule extends BaseModule {
         List<Course> courses = dao.query(Course.class, null);
         setTeachersName(courses);
         return new NutMap().setv("courses", courses);
+    }
+
+    @At
+    public Object manageTeacherInit() {
+        List<Teacher> teachers = dao.query(Teacher.class, null);
+        setCoursesNameInModule(teachers);
+        return new NutMap().setv("teachers", teachers);
     }
 
     @At
@@ -52,10 +61,27 @@ public class GymManagerModule extends BaseModule {
     }
 
     @At
+    public Object addTeacher(@Param("..") Teacher teacher){
+        if(teacher != null){
+            dao.insert(teacher);
+        }
+        return null;
+    }
+
+    @At
     public Object deleteCourse(@Param("..") Course course) {
         int flag = 0;
         if (course != null) {
             flag = dao.delete(course);
+        }
+        return new NutMap().setv("flag", flag > 0);
+    }
+
+    @At
+    public Object deleteTeacher(@Param("..") Teacher teacher) {
+        int flag = 0;
+        if (teacher != null) {
+            flag = dao.delete(teacher);
         }
         return new NutMap().setv("flag", flag > 0);
     }

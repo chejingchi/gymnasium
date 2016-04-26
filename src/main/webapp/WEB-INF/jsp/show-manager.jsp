@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -32,8 +35,11 @@
     <script type="text/javascript">
         var courses = ${obj.courses};
         var manageCourseInitUrl = "${base}/gymManager/manageCourseInit";
+        var manageTeacherInitUrl = "${base}/gymManager/manageTeacherInit";
         var addCourseUrl = "${base}/gymManager/addCourse";
+        var addTeacherUrl = "${base}/gymManager/addTeacher";
         var deleteCourseUrl = "${base}/gymManager/deleteCourse";
+        var deleteTeacherUrl = "${base}/gymManager/deleteTeacher";
     </script>
 </head>
 <body>
@@ -206,10 +212,10 @@
                         <a href="#" class="first-level"><i class="iconfont icon-book-font">&#xe605;</i>课程&教练<span
                                 class="glyphicon arrow"></span></a>
                         <ul>
-                            <li><a href="#" class="active-now">课程排期</a></li>
+                            <li><a id="show-course-calendar" class="active-now">课程排期</a></li>
                             <%--<li><a href="#">课表管理</a></li>--%>
                             <li><a id="show-course-manager">课程管理</a></li>
-                            <li><a href="#">教练管理</a></li>
+                            <li><a id="show-teacher-manager">教练管理</a></li>
                         </ul>
                     </li>
                     <li class="active">
@@ -270,6 +276,14 @@
                         </button>
                     </div>
                 </div>
+                <div id="teacher-manager" class="disnone">
+                    <div id="teacher-manager-pager"></div>
+                    <div>
+                        <button type="button" class="btn btn-default add-teacher" data-toggle="modal"
+                                data-target="#add-teacher">添加教师
+                        </button>
+                    </div>
+                </div>
 
             </div>
         </section>
@@ -314,11 +328,9 @@
                                 <label class="margin-left-minus-fifty col-sm-4 control-label">任课老师选择</label>
                                 <div class="col-sm-8">
                                     <select name="" id="teacherCode" class="form-control">
-                                        <option value="1">吴楠</option>
-                                        <option value="2">吴楠</option>
-                                        <option value="3">吴楠</option>
-                                        <option value="4">吴楠</option>
-                                        <option value="5">吴楠</option>
+                                        <c:forEach items="${obj.teachers}" var="teacher" varStatus="status">
+                                            <option value="${teacher.id}">${teacher.teacherName}</option>
+                                        </c:forEach>
                                     </select>
                                 </div>
                             </div>
@@ -348,6 +360,62 @@
                     </div>
                     <div align="center">
                         <button type="button" id="sure-to-add-course" class="btn btn-default">确认添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add-teacher" tabindex="-1" role="dialog"
+     aria-labelledby="addTeacherLabel" aria-hidden="true">
+    <div class="modal-dialog my-modal-width">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="addTeacherLabel">
+                    添加教练
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="add-course-modal">
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group col-sm-6">
+                                <label class="margin-left-minus-fifty col-sm-4 control-label">教师姓名</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="teacherName" class="form-control" placeholder="录入教师姓名">
+                                </div>
+                            </div>
+                            <div class="margin-left-minus-fifty form-group col-sm-6">
+                                <label class="col-sm-4 control-label">录入操作人员</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="operatorTeacher" class="form-control" placeholder="默认为管理员">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group col-sm-6">
+                                <label class="margin-left-minus-fifty col-sm-4 control-label">教师编码</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="teacherCodeAdd" class="form-control" placeholder="录入教师编码">
+                                </div>
+                            </div>
+                            <%--<div class="margin-left-minus-fifty form-group col-sm-6">--%>
+                                <%--<label class="col-sm-4 control-label">结束时间</label>--%>
+                                <%--<div class="col-sm-8">--%>
+                                    <%--<input type="text" id="endTime" class="form-control pick-time" placeholder="" readonly>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        </form>
+                    </div>
+                    <div align="center">
+                        <button type="button" id="sure-to-add-teacher" class="btn btn-default">确认添加</button>
                     </div>
                 </div>
             </div>

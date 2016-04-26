@@ -54,4 +54,20 @@ public class BaseModule {
         }
         return listStr;
     }
+
+    protected void setCoursesNameInModule(List<Teacher> teachers) {
+        for (Teacher t : teachers) {
+            setCoursesNameInModule(t);
+        }
+    }
+
+    private void setCoursesNameInModule(Teacher t) {
+        List<Course> courses = dao.query(Course.class, Cnd.where("teacherCode", "=", t.getId()));
+        StringBuilder sb = new StringBuilder();
+        for (Course c : courses) {
+            sb.append(c.getTitle());
+            sb.append(",");
+        }
+        t.setCoursesName(sb.toString());
+    }
 }

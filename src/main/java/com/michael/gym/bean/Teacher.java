@@ -27,6 +27,8 @@ public class Teacher {
     @Column
     private String CoursesCode;
 
+    private String CoursesName;
+
     public int getId() {
         return id;
     }
@@ -57,5 +59,13 @@ public class Teacher {
 
     public void setCoursesCode(String coursesCode) {
         CoursesCode = coursesCode;
+    }
+
+    public String getCoursesName() {
+        return CoursesName;
+    }
+
+    public void setCoursesName(String coursesName) {
+        CoursesName = coursesName;
     }
 }
