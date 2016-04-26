@@ -33,6 +33,7 @@
         var courses = ${obj.courses};
         var manageCourseInitUrl = "${base}/gymManager/manageCourseInit";
         var addCourseUrl = "${base}/gymManager/addCourse";
+        var deleteCourseUrl = "${base}/gymManager/deleteCourse";
     </script>
 </head>
 <body>

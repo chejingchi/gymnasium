@@ -50,4 +50,13 @@ public class GymManagerModule extends BaseModule {
         }
         return null;
     }
+
+    @At
+    public Object deleteCourse(@Param("..") Course course) {
+        int flag = 0;
+        if (course != null) {
+            flag = dao.delete(course);
+        }
+        return new NutMap().setv("flag", flag > 0);
+    }
 }

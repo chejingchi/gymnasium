@@ -32,9 +32,9 @@ public class BaseModule {
     }
 
     protected void setTeachersName(Course c) {
-        String teachersCode = c.getTeachersCode();
+        String teacherCode = c.getTeacherCode();
         String teachersName = "";
-        List<String> codeList = stringToList(teachersCode);
+        List<String> codeList = stringToList(teacherCode);
         for (String code : codeList) {
             Teacher t = dao.fetch(Teacher.class, Cnd.where("id", "=", code));
             teachersName += t.getTeacherName();

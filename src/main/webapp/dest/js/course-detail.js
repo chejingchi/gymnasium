@@ -55,6 +55,7 @@ $(function () {
                     dataSpace += '<td><p>' + finalData[dataId].start + '</p></td>';
                     dataSpace += '<td><p>' + finalData[dataId].end + '</p></td>';
                     dataSpace += '<td><p>' + finalData[dataId].teachersName + '</p></td>';
+                    dataSpace += '<td><button class="btn delete-course btn-primary">删除</button></td>';
                     dataSpace += '</tr>';
                 }
             }
@@ -99,7 +100,7 @@ $(function () {
 
     $("body").delegate(".pick-time", "focusin", function () {
         $(this).datetimepicker({
-            format: "dd MM yyyy - hh:ii",
+            format: "yyyy-mm-dd hh:ii",
             autoclose: true,
             todayBtn: true,
             pickerPosition: "bottom-left"
@@ -109,16 +110,49 @@ $(function () {
 
     $("#sure-to-add-course").on("click", function () {
         var addCourse = new Course().initParam();
-        if(addCourse.checkIsNotEmpty()){
+        if (addCourse.checkIsNotEmpty()) {
             $.ajax({
-                url : addCourseUrl,
-                type : "post",
-                data : addCourse,
-                dataType : "json",
-                success : function(){
-                    window.location.reload();
+                url: addCourseUrl,
+                type: "post",
+                data: addCourse,
+                dataType: "json",
+                success: function () {
+                    swal({
+                            title: "添加成功",
+                            type: "success",
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                window.location.reload();
+                            }
+                        });
                 }
             })
         }
+    })
+
+    $("body").on("click",".delete-course",function(){
+        var id = $(this).parent().parent().find("input").val();
+        $.ajax({
+            url: deleteCourseUrl,
+            type: "post",
+            data: {id : id},
+            dataType: "json",
+            success: function (data) {
+                if(data.flag){
+                    swal({
+                            title: "删除成功",
+                            type: "success",
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                window.location.reload();
+                            }
+                        });
+                }
+            }
+        })
     })
 })

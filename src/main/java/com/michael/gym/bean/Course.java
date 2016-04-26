@@ -30,7 +30,7 @@ public class Course {
     private Date end;
 
     @Column
-    private String teachersCode;
+    private String teacherCode;
 
     private String teachersName;
 
@@ -77,19 +77,19 @@ public class Course {
         this.end = end;
     }
 
-    public String getTeachersCode() {
-        return teachersCode;
-    }
-
-    public void setTeachersCode(String teachersCode) {
-        this.teachersCode = teachersCode;
-    }
-
     public String getTeachersName() {
         return teachersName;
     }
 
     public void setTeachersName(String teachersName) {
         this.teachersName = teachersName;
+    }
+
+    public String getTeacherCode() {
+        return teacherCode;
+    }
+
+    public void setTeacherCode(String teacherCode) {
+        this.teacherCode = teacherCode;
     }
 }

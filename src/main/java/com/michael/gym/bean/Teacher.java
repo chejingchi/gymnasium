@@ -18,7 +18,6 @@ public class Teacher {
     @Id
     private int id;
 
-
     @Column
     private String teacherCode;
 
