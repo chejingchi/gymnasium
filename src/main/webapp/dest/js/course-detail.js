@@ -45,7 +45,54 @@ $(function () {
             return false;
         }
         if ($.checkEmpty(this.teacherName)) {
-            sweetAlert("Oops...", "教师姓名名不能为空", "error");
+            sweetAlert("Oops...", "教师姓名不能为空", "error");
+            return false;
+        }
+        return true;
+    }
+
+    var User = function () {
+    }
+    User.prototype.initParam = function () {
+        this.username = $("#username").val();
+        this.sex = $("#sex").val();
+        this.vipCardNo = $("#vipCardNo").val();
+        this.telephone = $("#telephone").val();
+        this.email = $("#email").val();
+        this.qq = $("#qq").val();
+        return this;
+    }
+
+    User.prototype.checkIsNotEmpty = function () {
+        var mailRegularity = /\w@\w*\.\w/;
+        if ($.checkEmpty(this.username)) {
+            sweetAlert("Oops...", "教师编码名不能为空", "error");
+            return false;
+        }
+        if ($.checkEmpty(this.sex)) {
+            sweetAlert("Oops...", "请选择性别", "error");
+            return false;
+        }
+        if ($.checkEmpty(this.vipCardNo)) {
+            sweetAlert("Oops...", "vip卡号不能为空", "error");
+            return false;
+        }
+        if ($.checkEmpty(this.telephone)) {
+            sweetAlert("Oops...", "电话号码不能为空", "error");
+            return false;
+        } else if (this.telephone.length != 11) {
+            sweetAlert("Oops...", "电话号码格式不正确", "error");
+            return false;
+        }
+        if ($.checkEmpty(this.email)) {
+            sweetAlert("Oops...", "邮箱不能为空", "error");
+            return false;
+        } else if (!mailRegularity.test(this.email)) {
+            sweetAlert("Oops...", "邮箱格式不对", "error");
+            return false;
+        }
+        if ($.checkEmpty(this.qq)) {
+            sweetAlert("Oops...", "qq不能为空", "error");
             return false;
         }
         return true;
@@ -108,6 +155,42 @@ $(function () {
             }
             dataSpace += '</table></div>';
             $("#teacher-info-pager-div").html(dataSpace);
+        },
+        findUserInfoData: function (tp, pageSize, finalData) {
+            var dataSpace = '<div class="data-render"><table class="table table-hover" id="Pui">';
+            dataSpace += '<thead><tr>';
+            dataSpace += '<td><p>会员id</p></td>';
+            dataSpace += '<td><p>会员姓名</p></td>';
+            dataSpace += '<td><p>会员卡号</p></td>';
+            dataSpace += '<td><p>会员电话</p></td>';
+            dataSpace += '<td><p>性别</p></td>';
+            dataSpace += '<td><p>email</p></td>';
+            dataSpace += '<td><p>qq</p></td>';
+            dataSpace += '</tr></thead>';
+            for (var i = 0; i < pageSize; i++) {
+                var dataId = pageSize * (tp - 1) + i;
+                if (dataId + 1 > finalData.length) {
+                    break;
+                } else {
+                    if(finalData[dataId].username == "admin"){
+                        return;
+                    }
+                    finalData[dataId].sex = finalData[dataId].sex == '0' ? '女' : '男';
+                    dataSpace += '<tr class="show-detail-info" data-toggle="modal" data-target="#book-detail-info">';
+                    dataSpace += '<input type="hidden" value="' + finalData[dataId].id + '" />';
+                    dataSpace += '<td><p>' + finalData[dataId].id + '</p></td>';
+                    dataSpace += '<td><p>' + finalData[dataId].username + '</p></td>';
+                    dataSpace += '<td><p>' + finalData[dataId].vipCardNo + '</p></td>';
+                    dataSpace += '<td><p>' + finalData[dataId].telephone + '</p></td>';
+                    dataSpace += '<td><p>' + finalData[dataId].sex + '</p></td>';
+                    dataSpace += '<td><p>' + finalData[dataId].email + '</p></td>';
+                    dataSpace += '<td><p>' + finalData[dataId].qq + '</p></td>';
+                    dataSpace += '<td><button class="btn delete-user btn-primary">删除</button></td>';
+                    dataSpace += '</tr>';
+                }
+            }
+            dataSpace += '</table></div>';
+            $("#user-info-pager-div").html(dataSpace);
         },
         useFullCalendar: function () {
             var now = new Date();
@@ -180,6 +263,25 @@ $(function () {
         })
     })
 
+    $("#show-user-manager").on("click", function () {
+        $("#pc-menu a").removeClass("active-now");
+        $(this).addClass("active-now");
+        CourseManager.hideAll();
+        $("#user-manager").show();
+        $.ajax({
+            url: manageUserInitUrl,
+            Type: "post",
+            data: {},
+            dataType: "json",
+            success: function (data) {
+                var UserInfoPage = new PAGER();
+                pageObjArr.push(UserInfoPage);
+                UserInfoPage.initPager(1, data.users.length, 10, 7, 'user-manager-pager', 'user-info-pager-div',
+                    data.users, CourseManager.findUserInfoData, 1);
+            }
+        })
+    })
+
 
     $("body").delegate(".pick-time", "focusin", function () {
         $(this).datetimepicker({
@@ -239,6 +341,30 @@ $(function () {
         }
     })
 
+    $("#sure-to-add-user").on("click", function () {
+        var addUser = new User().initParam();
+        if (addUser.checkIsNotEmpty()) {
+            $.ajax({
+                url: addUserUrl,
+                type: "post",
+                data: addUser,
+                dataType: "json",
+                success: function () {
+                    swal({
+                            title: "添加成功",
+                            type: "success",
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                window.location.reload();
+                            }
+                        });
+                }
+            })
+        }
+    })
+
     $("body").on("click", ".delete-course", function () {
         var id = $(this).parent().parent().find("input").val();
         $.ajax({
@@ -267,6 +393,30 @@ $(function () {
         var id = $(this).parent().parent().find("input").val();
         $.ajax({
             url: deleteTeacherUrl,
+            type: "post",
+            data: {id: id},
+            dataType: "json",
+            success: function (data) {
+                if (data.flag) {
+                    swal({
+                            title: "删除成功",
+                            type: "success",
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                window.location.reload();
+                            }
+                        });
+                }
+            }
+        })
+    })
+
+    $("body").on("click", ".delete-user", function () {
+        var id = $(this).parent().parent().find("input").val();
+        $.ajax({
+            url: deleteUserUrl,
             type: "post",
             data: {id: id},
             dataType: "json",

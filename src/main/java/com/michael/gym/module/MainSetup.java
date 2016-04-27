@@ -1,5 +1,6 @@
 package com.michael.gym.module;
 
+import com.michael.gym.bean.User;
 import org.nutz.dao.Dao;
 import org.nutz.dao.util.Daos;
 import org.nutz.ioc.Ioc;
@@ -21,6 +22,12 @@ public class MainSetup implements Setup {
         Ioc ioc = nutConfig.getIoc();
         Dao dao = ioc.get(Dao.class);
         Daos.createTablesInPackage(dao, "com.michael.gym", false);
+        if (dao.count(User.class) == 0) {
+            User user = new User();
+            user.setUsername("admin");
+            user.setPassword("admin");
+            dao.insert(user);
+        }
     }
 
     public void destroy(NutConfig nutConfig) {

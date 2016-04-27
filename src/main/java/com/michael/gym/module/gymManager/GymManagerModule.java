@@ -2,6 +2,7 @@ package com.michael.gym.module.gymManager;
 
 import com.michael.gym.bean.Course;
 import com.michael.gym.bean.Teacher;
+import com.michael.gym.bean.User;
 import org.nutz.json.Json;
 import org.nutz.lang.util.NutMap;
 import org.nutz.mvc.annotation.At;
@@ -35,7 +36,7 @@ public class GymManagerModule extends BaseModule {
     public Object init() {
         List<Course> courses = dao.query(Course.class, null);
         List<Teacher> teachers = dao.query(Teacher.class, null);
-        return new NutMap().setv("courses", Json.toJson(courses)).setv("teachers",teachers);
+        return new NutMap().setv("courses", Json.toJson(courses)).setv("teachers", teachers);
     }
 
     @At
@@ -53,36 +54,55 @@ public class GymManagerModule extends BaseModule {
     }
 
     @At
+    public Object manageUserInit() {
+        List<User> users = dao.query(User.class, null);
+        return new NutMap().setv("users", users);
+    }
+
+    @At
     public Object addCourse(@Param("..") Course course) {
-        if (course != null) {
-            dao.insert(course);
-        }
+        insertObj(course);
         return null;
     }
 
     @At
-    public Object addTeacher(@Param("..") Teacher teacher){
-        if(teacher != null){
-            dao.insert(teacher);
-        }
+    public Object addTeacher(@Param("..") Teacher teacher) {
+        insertObj(teacher);
+        return null;
+    }
+
+    @At
+    public Object addUser(@Param("..") User user) {
+        insertObj(user);
         return null;
     }
 
     @At
     public Object deleteCourse(@Param("..") Course course) {
-        int flag = 0;
-        if (course != null) {
-            flag = dao.delete(course);
-        }
-        return new NutMap().setv("flag", flag > 0);
+        return deleteObject(course);
     }
 
     @At
     public Object deleteTeacher(@Param("..") Teacher teacher) {
+        return deleteObject(teacher);
+    }
+
+    @At
+    public Object deleteUser(@Param("..") User user) {
+        return deleteObject(user);
+    }
+
+    private Object deleteObject(Object obj) {
         int flag = 0;
-        if (teacher != null) {
-            flag = dao.delete(teacher);
+        if (obj != null) {
+            flag = dao.delete(obj);
         }
         return new NutMap().setv("flag", flag > 0);
+    }
+
+    private void insertObj(Object obj) {
+        if (obj != null) {
+            dao.insert(obj);
+        }
     }
 }

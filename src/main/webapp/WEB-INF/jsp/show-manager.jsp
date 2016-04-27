@@ -36,10 +36,16 @@
         var courses = ${obj.courses};
         var manageCourseInitUrl = "${base}/gymManager/manageCourseInit";
         var manageTeacherInitUrl = "${base}/gymManager/manageTeacherInit";
+        var manageUserInitUrl = "${base}/gymManager/manageUserInit";
+
         var addCourseUrl = "${base}/gymManager/addCourse";
         var addTeacherUrl = "${base}/gymManager/addTeacher";
+        var addUserUrl = "${base}/gymManager/addUser";
+
         var deleteCourseUrl = "${base}/gymManager/deleteCourse";
         var deleteTeacherUrl = "${base}/gymManager/deleteTeacher";
+        var deleteUserUrl = "${base}/gymManager/deleteUser";
+
     </script>
 </head>
 <body>
@@ -223,7 +229,7 @@
                         <a href="#" class="first-level"><i class="iconfont icon-admin-font">&#xe60b;</i>会员&卡 <span
                                 class="glyphicon arrow"></span></a>
                         <ul>
-                            <li><a href="#">会员管理</a></li>
+                            <li><a id="show-user-manager">会员管理</a></li>
                             <li><a href="#">卡名称管理</a></li>
 
                         </ul>
@@ -284,6 +290,14 @@
                         </button>
                     </div>
                 </div>
+                <div id="user-manager" class="disnone">
+                    <div id="user-manager-pager"></div>
+                    <div>
+                        <button type="button" class="btn btn-default add-user" data-toggle="modal"
+                                data-target="#add-user">添加会员
+                        </button>
+                    </div>
+                </div>
 
             </div>
         </section>
@@ -337,7 +351,8 @@
                             <div class="margin-left-minus-fifty form-group col-sm-6">
                                 <label class="col-sm-4 control-label">开始时间</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="startTime" class="form-control pick-time" placeholder="" readonly>
+                                    <input type="text" id="startTime" class="form-control pick-time" placeholder=""
+                                           readonly>
                                 </div>
                             </div>
                         </form>
@@ -347,13 +362,15 @@
                             <div class="form-group col-sm-6">
                                 <label class="margin-left-minus-fifty col-sm-4 control-label">录入时间</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control pick-time" placeholder="默认为当前时间可以不选" readonly>
+                                    <input type="text" class="form-control pick-time" placeholder="默认为当前时间可以不选"
+                                           readonly>
                                 </div>
                             </div>
                             <div class="margin-left-minus-fifty form-group col-sm-6">
                                 <label class="col-sm-4 control-label">结束时间</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="endTime" class="form-control pick-time" placeholder="" readonly>
+                                    <input type="text" id="endTime" class="form-control pick-time" placeholder=""
+                                           readonly>
                                 </div>
                             </div>
                         </form>
@@ -407,15 +424,102 @@
                                 </div>
                             </div>
                             <%--<div class="margin-left-minus-fifty form-group col-sm-6">--%>
-                                <%--<label class="col-sm-4 control-label">结束时间</label>--%>
-                                <%--<div class="col-sm-8">--%>
-                                    <%--<input type="text" id="endTime" class="form-control pick-time" placeholder="" readonly>--%>
-                                <%--</div>--%>
+                            <%--<label class="col-sm-4 control-label">结束时间</label>--%>
+                            <%--<div class="col-sm-8">--%>
+                            <%--<input type="text" id="endTime" class="form-control pick-time" placeholder="" readonly>--%>
+                            <%--</div>--%>
                             <%--</div>--%>
                         </form>
                     </div>
                     <div align="center">
                         <button type="button" id="sure-to-add-teacher" class="btn btn-default">确认添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add-user" tabindex="-1" role="dialog"
+     aria-labelledby="addUserLabel" aria-hidden="true">
+    <div class="modal-dialog my-modal-width">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="addUserLabel">
+                    添加会员
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="add-course-modal">
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group col-sm-6">
+                                <label class="margin-left-minus-fifty col-sm-4 control-label">会员姓名</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="username" class="form-control" placeholder="录入会员姓名">
+                                </div>
+                            </div>
+                            <div class="margin-left-minus-fifty form-group col-sm-6">
+                                <label class="col-sm-4 control-label">录入操作人员</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="operatorUser" class="form-control" placeholder="默认为管理员">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group col-sm-6">
+                                <label class="margin-left-minus-fifty col-sm-4 control-label">会员编码</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="vipCardNo" class="form-control" placeholder="自动生成">
+                                </div>
+                            </div>
+                            <div class="margin-left-minus-fifty form-group col-sm-6">
+                                <label class="col-sm-4 control-label">电话号码</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="telephone" class="form-control"
+                                           placeholder="录入电话号码" maxlength="11">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group col-sm-6">
+                                <label class="margin-left-minus-fifty col-sm-4 control-label">qq</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="qq" class="form-control" placeholder="录入qq">
+                                </div>
+                            </div>
+                            <div class="margin-left-minus-fifty form-group col-sm-6">
+                                <label class="col-sm-4 control-label">e-mail</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="email" class="form-control" placeholder="录入邮箱">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group col-sm-6">
+                                <label class="margin-left-minus-fifty col-sm-4 control-label">用户类型:</label>
+                                <div class="col-sm-8">
+                                    <select name="type" id="sex" class="sex">
+                                        <option value="">请选择</option>
+                                        <option value="0">女</option>
+                                        <option value="1">男</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div align="center">
+                        <button type="button" id="sure-to-add-user" class="btn btn-default">确认添加</button>
                     </div>
                 </div>
             </div>
