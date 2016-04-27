@@ -22,10 +22,13 @@
     <meta name="description" content="Login and Registration Form with HTML5 and CSS3"/>
     <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class"/>
     <meta name="author" content="Codrops"/>
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="css/demo.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/animate-custom.css"/>
+    <link rel="stylesheet" href="${base}/dest/login/css/demo.css">
+    <link rel="stylesheet" href="${base}/dest/login/css/style.css">
+    <link rel="stylesheet" href="${base}/dest/login/css/animate-custom.css">
+    <script>
+        var base = "${base}";
+        var loginUrl = "${base}/login/sign";
+    </script>
 </head>
 <body>
 <div class="container">
@@ -34,20 +37,16 @@
         <a href="">
             <strong>&laquo; Previous Demo: </strong>Responsive Content Navigator
         </a>
-                <span class="right">
-                    <a href=" http://tympanus.net/codrops/2012/03/27/login-and-registration-form-with-html5-and-css3/">
-                        <strong>Back to the Codrops Article</strong>
-                    </a>
-                </span>
+        <span class="right">
+        </span>
         <div class="clr"></div>
     </div><!--/ Codrops top bar -->
     <header>
-        <h1>Login and Registration Form <span>with HTML5 and CSS3</span></h1>
+        <h1>我的健身房系统 <span>一个神奇的系统</span></h1>
         <nav class="codrops-demos">
-            <span>Click <strong>"Join us"</strong> to see the form switch</span>
-            <a href="index.html" class="current-demo">Demo 1</a>
-            <a href="index2.html">Demo 2</a>
-            <a href="index3.html">Demo 3</a>
+            <a>健身</a>
+            <a>生活之乐趣</a>
+            <a>人生之精华</a>
         </nav>
     </header>
     <section>
@@ -57,7 +56,7 @@
             <a class="hiddenanchor" id="tologin"></a>
             <div id="wrapper">
                 <div id="login" class="animate form">
-                    <form action="mysuperscript.php" autocomplete="on">
+                    <form action="" autocomplete="on">
                         <h1>Log in</h1>
                         <p>
                             <label for="username" class="uname" data-icon="u"> Your email or username </label>
@@ -69,12 +68,8 @@
                             <input id="password" name="password" required="required" type="password"
                                    placeholder="eg. X8df!90EO"/>
                         </p>
-                        <p class="keeplogin">
-                            <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping"/>
-                            <label for="loginkeeping">Keep me logged in</label>
-                        </p>
                         <p class="login button">
-                            <input type="submit" value="Login"/>
+                            <input type="submit" id="login-btn" value="Login"/>
                         </p>
                         <p class="change_link">
                             Not a member yet ?
@@ -84,7 +79,7 @@
                 </div>
 
                 <div id="register" class="animate form">
-                    <form action="mysuperscript.php" autocomplete="on">
+                    <form action="" autocomplete="on">
                         <h1> Sign up </h1>
                         <p>
                             <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
@@ -108,7 +103,7 @@
                                    type="password" placeholder="eg. X8df!90EO"/>
                         </p>
                         <p class="signin button">
-                            <input type="submit" value="Sign up"/>
+                            <input type="" value="Sign up"/>
                         </p>
                         <p class="change_link">
                             Already a member ?
@@ -116,10 +111,11 @@
                         </p>
                     </form>
                 </div>
-
             </div>
         </div>
     </section>
 </div>
 </body>
+<script src="${base}/dest/jquery-2.1.1.js"></script>
+<script src="${base}/dest/js/login.js"></script>
 </html>

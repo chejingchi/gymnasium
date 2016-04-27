@@ -45,6 +45,9 @@
         var deleteCourseUrl = "${base}/gymManager/deleteCourse";
         var deleteTeacherUrl = "${base}/gymManager/deleteTeacher";
         var deleteUserUrl = "${base}/gymManager/deleteUser";
+        var base = "${base}";
+
+        var createVipCardNoUrl = "${base}/gymManager/createVipCardNo";
 
     </script>
 </head>
@@ -476,7 +479,7 @@
                             <div class="form-group col-sm-6">
                                 <label class="margin-left-minus-fifty col-sm-4 control-label">会员编码</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="vipCardNo" class="form-control" placeholder="自动生成">
+                                    <input type="text" id="vipCardNo" class="form-control" placeholder="自动生成,请勿改动">
                                 </div>
                             </div>
                             <div class="margin-left-minus-fifty form-group col-sm-6">

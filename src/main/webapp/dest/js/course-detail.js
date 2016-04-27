@@ -172,8 +172,8 @@ $(function () {
                 if (dataId + 1 > finalData.length) {
                     break;
                 } else {
-                    if(finalData[dataId].username == "admin"){
-                        return;
+                    if (finalData[dataId].username == "admin") {
+                        continue;
                     }
                     finalData[dataId].sex = finalData[dataId].sex == '0' ? '女' : '男';
                     dataSpace += '<tr class="show-detail-info" data-toggle="modal" data-target="#book-detail-info">';
@@ -433,6 +433,19 @@ $(function () {
                             }
                         });
                 }
+            }
+        })
+    })
+    $("body").on("focus","#vipCardNo", function () {
+        if(!$.checkEmpty($("#vipCardNo").val())){
+            return;
+        }
+        $.ajax({
+            url: createVipCardNoUrl,
+            type: "post",
+            data: {},
+            success: function (data) {
+                $("#vipCardNo").val(data.vipCardNo);
             }
         })
     })

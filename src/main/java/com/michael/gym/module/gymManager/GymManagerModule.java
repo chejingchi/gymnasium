@@ -5,10 +5,8 @@ import com.michael.gym.bean.Teacher;
 import com.michael.gym.bean.User;
 import org.nutz.json.Json;
 import org.nutz.lang.util.NutMap;
-import org.nutz.mvc.annotation.At;
-import org.nutz.mvc.annotation.Fail;
-import org.nutz.mvc.annotation.Ok;
-import org.nutz.mvc.annotation.Param;
+import org.nutz.mvc.annotation.*;
+import org.nutz.mvc.filter.CheckSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +23,7 @@ import java.util.List;
  */
 @At("/gymManager")
 @Ok("json:{locked:'password',ignoreNull:true}")
+@Filters(@By(type = CheckSession.class, args = {"me", "/login/init"}))
 @Fail("http:500")
 public class GymManagerModule extends BaseModule {
 
@@ -90,6 +89,12 @@ public class GymManagerModule extends BaseModule {
     @At
     public Object deleteUser(@Param("..") User user) {
         return deleteObject(user);
+    }
+
+    @At
+    public Object createVipCardNo() {
+        int vipCardNo = (int) (1 + Math.random() * 100000);
+        return new NutMap().setv("vipCardNo", vipCardNo + "");
     }
 
     private Object deleteObject(Object obj) {
